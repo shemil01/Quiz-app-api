@@ -6,6 +6,7 @@ import authRoute from './routes/authRoute'
 import questionRoute from './routes/questionRoute'
 import answerRoute from './routes/answerRoute'
 import scoreRoute from './routes/scoreRoute'
+import { errorHandler } from "./middleware/errorHandler"; 
 
 dotenv.config()
 
@@ -21,6 +22,7 @@ app.use('/api',scoreRoute)
 
 connectDB()
 
+app.use(errorHandler)
 const PORT = process.env.PORT
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))

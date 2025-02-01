@@ -4,6 +4,7 @@ import User from "../models/User";
 import dotenv from "dotenv";
 import { AuthRequest } from "../types/AuthRequest";
 
+
 dotenv.config();
 
 export const authMiddleware = async (

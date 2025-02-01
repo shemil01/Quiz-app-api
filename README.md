@@ -8,7 +8,7 @@ Features
 2 Submit answers
 3 Calculate total marks after 5 questions
 
-API Endpoints
+API Routes
 1 `POST /api/login`: Login with email
 2 `POST /api/post-question`: post  question
 2 `GET /api/question`: Fetch a question
