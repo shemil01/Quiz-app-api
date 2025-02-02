@@ -4,7 +4,11 @@ import { AuthRequest } from "../types/AuthRequest";
 
 export const getTotalScore = async (req: AuthRequest, res: Response) => {
   const userId = req.userId;
-  const answers = await Answer.find({ userId }).populate('questionId');
+  const sessionId = req.sessionId;
+
+
+  
+  const answers = await Answer.find({ userId,sessionId }).populate('questionId');
 
   let totalScore = 0;
   answers.forEach((answer) => {
@@ -13,5 +17,7 @@ export const getTotalScore = async (req: AuthRequest, res: Response) => {
     }
   });
 
-  res.json({ totalScore });
+  res.json({ totalScore,sessionId
+    
+   });
 };
