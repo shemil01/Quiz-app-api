@@ -22,6 +22,7 @@ export const authMiddleware = async (
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as {
       userId: string;
+      sessionId: string; 
     };
 
     const user = await User.findById(decoded.userId);
@@ -31,7 +32,8 @@ export const authMiddleware = async (
     }
 
     req.userId = user._id.toString(); 
-
+    req.sessionId = decoded.sessionId;
+    
     next();
   } catch (error) {
     res.status(401).json({ message: "Invalid token" });

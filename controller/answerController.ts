@@ -8,7 +8,8 @@ export const submitAnswer = async (req: AuthRequest, res: Response): Promise<voi
     
     const {  selectedOption } = req.body;
     const userId = req.userId; 
-console.log(questionId)
+    const sessionId = req.sessionId;
+
     if (!userId) {
         res.status(401).json({ message: "Unauthorized" });
         return;
@@ -22,7 +23,7 @@ console.log(questionId)
 
     const isCorrect = question.correctAnswer === selectedOption;
 
-    await Answer.create({ userId, questionId, selectedOption });
+    await Answer.create({ userId, questionId, selectedOption,sessionId   });
 
     res.json({ message: "Answer submitted successfully", isCorrect });
 };

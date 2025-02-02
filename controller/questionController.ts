@@ -43,10 +43,11 @@ export const getQuestion = async (
   res: Response
 ): Promise<void> => {
   const userId = req.userId;
-
-  const answredQuestion = await Answer.find({ userId }).distinct("questionId");
+  const sessionId = req.sessionId;
+  
+  const answredQuestion = await Answer.find({ userId ,sessionId}).distinct("questionId");
   const question = await Question.findOne({ _id: { $nin: answredQuestion } });
-console.log(question)
+
   if (!question) {
     res.status(404).json({ message: " Question not found" });
     return;
